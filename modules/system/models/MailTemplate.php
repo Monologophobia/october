@@ -155,8 +155,10 @@ class MailTemplate extends Model
         $html = Twig::parse($template->content_html, $data);
         if ($template->layout) {
             $html = Twig::parse($template->layout->content_html, [
-                'content' => $html,
-                'css' => $template->layout->content_css
+                'subject'     => $template->subject,
+                'description' => $template->description,
+                'content'     => $html,
+                'css'         => $template->layout->content_css
             ] + (array) $data);
         }
 
